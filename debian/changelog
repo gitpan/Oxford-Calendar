@@ -1,3 +1,9 @@
+liboxford-calendar-perl (1.5-1) unstable; urgency=low
+
+  * This is the 1.5 release; see the changes file for details.
+
+ -- Simon Cozens <simon@netthink.co.uk>  Tue, 26 Nov 2002 10:35:27 +0000
+
 liboxford-calendar-perl (1.4-1) unstable; urgency=low
 
   * This is the 1.4 release; see the changes file for details.
