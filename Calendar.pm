@@ -3,7 +3,7 @@
 # Eugene van der Pijll (c) 2004
 # Artistic License
 package Oxford::Calendar; 
-$Oxford::Calendar::VERSION="1.6";
+$Oxford::Calendar::VERSION="1.7";
 use strict;
 
 =head1 NAME
@@ -29,7 +29,7 @@ use Date::Calc qw(Decode_Date_EU);
 
 my %db;
 
-my $_initcal; # If this is true, we have out database of dates already.
+my $_initcal; # If this is true, we have our database of dates already.
 
 our $testing = 0;
 
@@ -38,7 +38,14 @@ sub _initcal {
 	if ($testing or !Oxford::Calendar::InitHTML(LWP::Simple::get("http://www.admin.ox.ac.uk/admin/dates.shtml"))) {
 		# OK, we have to do it ourselves.
 		warn ("Couldn't load calendar") unless $testing;
-		Oxford::Calendar::Init(
+		Oxford::Calendar::Init();
+	}
+
+	$_initcal++;
+}
+
+sub Init { 
+    %db=(
             "Hilary 2001" => "14/01/2001",
             "Trinity 2001" => "22/04/2001",
             "Michaelmas 2001" => "07/10/2001",
@@ -50,20 +57,13 @@ sub _initcal {
             "Michaelmas 2003" => "12/10/2003",
             "Hilary 2004" => "18/01/2004",
             "Trinity 2004" => "25/04/2004",
-            "Michaelmas 2004" => "10/10/2003",
-            "Hilary 2005" => "16/01/2003",
-            "Trinity 2005" => "24/04/2003",
-            "Michaelmas 2005" => "09/10/2003",
-            "Hilary 2006" => "15/01/2003",
-            "Trinity 2006" => "23/04/2003",
-            );
-	}
-
-	$_initcal++;
-}
-
-sub Init { 
-    %db=(@_); 
+            "Michaelmas 2004" => "10/10/2004",
+            "Hilary 2005" => "16/01/2005",
+            "Trinity 2005" => "24/04/2005",
+            "Michaelmas 2005" => "09/10/2005",
+            "Hilary 2006" => "15/01/2006",
+            "Trinity 2006" => "23/04/2006",
+            @_ );
 } 
 
 # This reads in the dates of term from the website, and tries to parse
@@ -71,17 +71,18 @@ sub Init {
 sub InitHTML {
     return 0 unless $_[0];
 	$_[0]=~s/\r//g;
+    s/<pre>\n//g;
 	my @foo=split /\n/, $_[0];
 	Init();
     my ($term, $year, $day, $month, $monthname);
 	my $next=0;
 	foreach (@foo) {
-		last if /Dates of Extended Terms/; 
+		last if /<h2>Dates of Extended Terms/; 
 		# If they change the layout, of course...
 		if (/TERM/) {($term, $year) = /\s*(\w+)\s+TERM (\d+)/; $next=1;}
 		elsif ($next) { 
 			$next=0; # <homer> Mmmm, counters. </homer>
-			my ($date) = /^<PRE>(.*?)\s\s/;
+			my ($date) = /^(.*?)\s\s/;
             $date=~s/,//g;
             $date.=$year;
             ($year, $month, $day) = Date::Calc::Decode_Date_EU($date);

@@ -1,4 +1,10 @@
-1.6   2004-11-xx
+1.7   2005-01-04
+    - Corrected terms 2004-2006 (which were incorrectly given as 2003)
+
+    - Term dates before 2004 are not shown on the OU website; always
+      pre-load them
+
+1.6   2004-11-20
     - New maintainer: Eugene van der Pijll <pijll@cpan.org>
 
     - Added terms 2004-2006 to internal database
