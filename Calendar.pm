@@ -1,7 +1,7 @@
-# Oxford University calendar conversion. Simon Cozens (c) 1999
+# Oxford University calendar conversion. Simon Cozens (c) 1999-2002
 # Artistic License
 package Oxford::Calendar; 
-$Oxford::Calendar::VERSION="1.2";
+$Oxford::Calendar::VERSION="1.3";
 use strict;
 
 =head1 NAME
@@ -31,7 +31,7 @@ my $_initcal; # If this is true, we have out database of dates already.
 
 # Load up the calendar on demand.
 sub _initcal {
-	unless (Oxford::Calendar::InitHTML(LWP::Simple::get("http://www.admin.ox.ac.uk/admin/dates.htm"))) {
+	unless (Oxford::Calendar::InitHTML(LWP::Simple::get("http://www.admin.ox.ac.uk/admin/dates.shtml"))) {
 		# OK, we have to do it ourselves.
 		warn ("Couldn't load calendar");
 		Oxford::Calendar::Init(
@@ -229,8 +229,9 @@ sub FromOx {
 
 }
 
+"A TRUE VALUE";
+
 =head1 AUTHOR
 
 Simon Cozens, C<simon@cpan.org>
 
-"A TRUE VALUE";
