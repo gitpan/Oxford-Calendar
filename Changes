@@ -1,6 +1,19 @@
-Revision history for Perl extension Oxford::Calendar.
+2002-11-26 09:06  simon
 
-0.01  Thu Jan 25 14:54:16 2001
-	- original version; created by h2xs 1.20 with options
-		-AX -n Oxford::Calendar
+	* MANIFEST: Yes, we are a Debian module.
+
+2002-11-26 09:03  simon
+
+	* Calendar.pm: Keep internal database going for another few years.
+
+2002-06-17 19:21  simon
+
+	* Calendar.pm: Fix ugly "week 0" bug
+
+2002-05-02 19:27  simon
+
+	* Calendar.pm, Changes, MANIFEST, Makefile.PL, test.pl,
+	debian/changelog, debian/control, debian/files, debian/rules: 
+	
+	Bring calendar under version control.
 

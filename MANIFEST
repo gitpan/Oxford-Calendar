@@ -3,3 +3,7 @@ Changes
 MANIFEST
 Makefile.PL
 test.pl
+debian/changelog
+debian/control
+debian/files
+debian/rules

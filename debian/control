@@ -1,0 +1,14 @@
+Source: liboxford-calendar-perl
+Maintainer: cpan2deb tool <cpan2deb@squash.oucs.ox.ac.uk>
+Priority: optional
+Section: interpreters
+Build-Depends-Indep: debhelper (>= 3.0.5), perl5
+Standards-Version: 3.5.6.0
+
+Package: liboxford-calendar-perl
+Architecture: all
+Priority: optional
+Section: interpreters
+Depends: perl,libwww-perl, libdate-calc-perl
+Description: Oxford-Calendar Perl module
+ Automatically generated from Oxford-Calendar-1.2.tar.gz

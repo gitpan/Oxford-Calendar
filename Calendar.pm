@@ -1,7 +1,7 @@
 # Oxford University calendar conversion. Simon Cozens (c) 1999-2002
 # Artistic License
 package Oxford::Calendar; 
-$Oxford::Calendar::VERSION="1.3";
+$Oxford::Calendar::VERSION="1.4";
 use strict;
 
 =head1 NAME
@@ -29,23 +29,25 @@ my %db;
 
 my $_initcal; # If this is true, we have out database of dates already.
 
+our $testing;
+
 # Load up the calendar on demand.
 sub _initcal {
-	unless (Oxford::Calendar::InitHTML(LWP::Simple::get("http://www.admin.ox.ac.uk/admin/dates.shtml"))) {
+	unless (Oxford::Calendar::InitHTML(LWP::Simple::get("http://www.admin.ox.ac.uk/admin/dates.shtml" and !$testing))) {
 		# OK, we have to do it ourselves.
-		warn ("Couldn't load calendar");
+		warn ("Couldn't load calendar") unless $testing;
 		Oxford::Calendar::Init(
-			"Michaelmas 1999" => "10/10/1999", 
-			"Hilary 2000" => "16/01/2000",
-			"Trinity 2000" => "30/04/2000",
-            "Michaelmas 2000" => "08/10/2000",
             "Hilary 2001" => "14/01/2001",
             "Trinity 2001" => "22/04/2001",
             "Michaelmas 2001" => "07/10/2001",
             "Hilary 2002" => "13/01/2002",
             "Trinity 2002" => "21/04/2002",
             "Michaelmas 2002" => "13/10/2002",
-            
+            "Hilary 2003" => "19/01/2003",
+            "Trinity 2003" => "27/04/2003",
+            "Michaelmas 2003" => "12/10/2003",
+            "Hilary 2004" => "18/01/2004",
+            "Trinity 2004" => "25/04/2004",
             );
 	}
 
@@ -167,9 +169,10 @@ sub Parse {
 		pos($string)-=length($1);
 	}
 	foreach(sort {length $b <=> length $a} keys %ab) {
-		if ($string=~/$_/gi) {
-			pos($string)-=length($_);
-			my $foo=lc($_); $string=~s/\G$foo[a-z]*/ /; $expand=$ab{$_};
+		if ($string=~s/\b$_\w+//i) {
+			#pos($string)-=length($_);
+			#my $foo=lc($_); $string=~s/\G$foo[a-z]*/ /i; 
+            $expand=$ab{$_};
 			$term=$expand if (scalar(grep /$expand/, @terms) > 0) ;
 			$day=$expand if (scalar (grep /$expand/, @days) > 0) ;
 		}
@@ -199,7 +202,7 @@ sub Parse {
 		$term=~s/.*eek,\s+(\w+).*/$1/;
 	}
 	$year=(Date::Calc::Today())[0] unless $year;
-	return "UNPARSABLE" unless $week and $day;
+	return "UNPARSABLE" unless defined $week and defined $day;
 	return($year,$term,$week,$day);
 }
 

@@ -12,6 +12,8 @@ use Oxford::Calendar;
 $loaded = 1;
 print "ok 1\n";
 
+$Oxford::Calendar::testing++;
+
 ######################### End of black magic.
 
 # Insert your test code below (better if it prints "ok 13"
