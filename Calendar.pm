@@ -1,7 +1,9 @@
-# Oxford University calendar conversion. Simon Cozens (c) 1999-2002
+# Oxford University calendar conversion.
+# Simon Cozens (c) 1999-2002
+# Eugene van der Pijll (c) 2004
 # Artistic License
 package Oxford::Calendar; 
-$Oxford::Calendar::VERSION="1.5";
+$Oxford::Calendar::VERSION="1.6";
 use strict;
 
 =head1 NAME
@@ -48,6 +50,12 @@ sub _initcal {
             "Michaelmas 2003" => "12/10/2003",
             "Hilary 2004" => "18/01/2004",
             "Trinity 2004" => "25/04/2004",
+            "Michaelmas 2004" => "10/10/2003",
+            "Hilary 2005" => "16/01/2003",
+            "Trinity 2005" => "24/04/2003",
+            "Michaelmas 2005" => "09/10/2003",
+            "Hilary 2006" => "15/01/2003",
+            "Trinity 2006" => "23/04/2003",
             );
 	}
 
@@ -236,5 +244,7 @@ sub FromOx {
 
 =head1 AUTHOR
 
-Simon Cozens, C<simon@cpan.org>
+Simon Cozens
+
+Eugene van der Pijll, C<pijll@cpan.org>
 
