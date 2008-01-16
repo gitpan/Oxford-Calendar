@@ -1,0 +1,29 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.55.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 0a6a4456f5e07131f64687ec5ba7747ff448cbba Changes
+SHA1 e57e69f31cc25d9df759aa8fb2f2fd4df86296f4 MANIFEST
+SHA1 ed03e9c85bb55b4675beb19cf9310ce697b8eea3 META.yml
+SHA1 656cc5dcfc6259b61056b0abb6d1b2d02410a34d Makefile.PL
+SHA1 6a4b4e7f9c88e529379afb76874415c45b24897d lib/Oxford/Calendar.pm
+SHA1 85d3bdcf95caaf3cf810398c02c0969e523fc9ab t/00_all.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.6 (GNU/Linux)
+
+iD8DBQFHjUvmYzuFKFF44qURAksVAJ9jS0G/ovldQhiR3A5mhrSzQ7XmswCgnjbN
+SpgOsbX6rsEIDqGlS5LRBnQ=
+=j6fl
+-----END PGP SIGNATURE-----

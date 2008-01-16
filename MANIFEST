@@ -1,6 +1,7 @@
-Calendar.pm
+lib/Oxford/Calendar.pm
 Changes
 MANIFEST
 Makefile.PL
-test.pl
+t/00_all.t
 META.yml                                 Module meta-data (added by MakeMaker)
+SIGNATURE                                Public-key signature (added by MakeMaker)

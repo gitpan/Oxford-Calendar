@@ -1,12 +1,15 @@
 # http://module-build.sourceforge.net/META-spec.html
 #XXXXXXX This is a prototype!!!  It will change in the future!!! XXXXX#
 name:         Oxford-Calendar
-version:      1.8
-version_from: Calendar.pm
+version:      2.0
+version_from: lib/Oxford/Calendar.pm
 installdirs:  site
 requires:
     Date::Calc:                    0
+    Test::Exception:               0
+    Test::More:                    0
     Text::Abbrev:                  0
+    Time::Seconds:                 0
     YAML:                          0
 
 distribution_type: module
