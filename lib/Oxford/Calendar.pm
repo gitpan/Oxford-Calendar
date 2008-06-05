@@ -4,7 +4,7 @@
 # Dominic Hargreaves / University of Oxford (c) 2007-2008
 # Artistic License
 package Oxford::Calendar;
-$Oxford::Calendar::VERSION = "2.01";
+$Oxford::Calendar::VERSION = "2.02";
 use strict;
 use Text::Abbrev;
 use Date::Calc qw(Add_Delta_Days Decode_Date_EU Delta_Days Mktime Easter_Sunday Date_to_Days Day_of_Week_to_Text Day_of_Week);
@@ -306,8 +306,6 @@ If true, ignores dates marked as provisional in the database.
 
 =back
 
-=back
-
 =cut
 
 sub ToOx {
@@ -387,8 +385,6 @@ sub NextTerm {
     return @next_term;
 }
 
-=over 3
-
 =item StatutoryTermDates($year)
 
 Returns a hash reference keyed on terms for a given year, the value of
@@ -397,8 +393,6 @@ The dates are stored as array references containing numeric
 year, month, day values.
 
 Note: these are the statutory term dates, not full term dates.
-
-=back
 
 =cut
 
@@ -457,8 +451,6 @@ sub StatutoryTermDates {
     return $term_dates;
 }
 
-=over 3
-
 =item Parse($string)
 
 Takes a free-form description of an Oxford calendar date, and attempts
@@ -468,8 +460,6 @@ is returned.  Otherwise, an array will be returned of the form
 C<($year,$term,$week,$day)>.
 
 This function is experimental.
-
-=back
 
 =cut
 
@@ -532,8 +522,6 @@ sub Parse {
     return ( $year, $term, $week, $day );
 }
 
-=over 3
-
 =item FromOx($year, $term, $week, $day)
 
 Converts an Oxford date into a Georgian date, returning a string of the
@@ -567,6 +555,8 @@ sub FromOx {
 
 1;
 
+=back
+
 =head1 BUGS
 
 Bugs may be browsed and submitted at
@@ -580,8 +570,8 @@ Simon Cozens is the original author of this module.
 Eugene van der Pijll, C<pijll@cpan.org> took over maintenance from
 Simon for a time.
 
-Dominic Hargreaves currently maintains this module in his capacity as
-employee of the Computing Services, University of Oxford.
+Dominic Hargreaves currently maintains this module for the
+Computing Services, University of Oxford.
 
 =cut
 
