@@ -1,15 +1,16 @@
 # Oxford University calendar conversion.
 # Simon Cozens (c) 1999-2002
 # Eugene van der Pijll (c) 2004
-# Dominic Hargreaves / University of Oxford (c) 2007-2010
+# Dominic Hargreaves / University of Oxford (c) 2007-2011
 # Artistic License
 package Oxford::Calendar;
-$Oxford::Calendar::VERSION = "2.04";
+$Oxford::Calendar::VERSION = "2.05";
 use strict;
 use Text::Abbrev;
 use Date::Calc qw(Add_Delta_Days Decode_Date_EU Delta_Days Mktime Easter_Sunday Date_to_Days Day_of_Week_to_Text Day_of_Week);
 use YAML;
 use Time::Seconds;
+use Time::Piece;
 
 use constant CALENDAR => '/etc/oxford-calendar.yaml';
 use constant SEVEN_WEEKS => 7 * ONE_WEEK;
@@ -31,8 +32,10 @@ Oxford::Calendar - University of Oxford calendar conversion routines
 
 =head1 SYNOPSIS
 
+    use 5.10.0;
     use Oxford::Calendar;
-    print "Today is ", Oxford::Calendar::ToOx(reverse Date::Calc::Today);
+    use Date::Calc;
+    say "Today is " . Oxford::Calendar::ToOx(reverse Date::Calc::Today);
 
 =head1 DESCRIPTION
 
@@ -150,7 +153,7 @@ sub _init_range {
     foreach my $termspec ( keys %db ) {
         next unless $db{$termspec};
 
-        my $time = eval { Mktime( Decode_Date_EU( $db{$termspec}->{start} ), 0, 0, 0 ) }
+        my $time = eval { Time::Piece->strptime($db{$termspec}->{start}, '%d/%m/%Y' ) }
              or die
                 "Could not decode date ($db{$termspec}->{start}) for term $termspec: $@";
 
@@ -195,7 +198,7 @@ sub _to_ox_nearest {
     my @term;
     _init_range() unless defined $_initrange;
     my $dow = Day_of_Week_to_Text( Day_of_Week( @date ) );
-    my $tm = Mktime((@date), 0, 0, 0);
+    my $tm = Time::Piece->strptime(join('/', @date[0..2]), '%Y/%m/%d');
     my @terms = sort { $a->[0] <=> $b->[0] } @_oxford_full_terms;
     my ( $prevterm, $nextterm );
     my $curterm = shift @terms;
@@ -524,8 +527,12 @@ sub Parse {
 
 =item FromOx($year, $term, $week, $day)
 
-Converts an Oxford date into a Georgian date, returning a string of the
+Converts an Oxford date into a Gregorian date, returning a string of the
 form C<DD/MM/YYYY> or undef.
+
+The arguments are of the same format as returned by ToOx in array context;
+that is, a four-digit year, the name of the term, the week number, and
+the name of the day of week (e.g. 'Sunday').
 
 If the requested date is not covered by the database, FromOx will die with
 an "out of range" error message. Therefore it is recommended to eval ToOx
@@ -562,6 +569,10 @@ sub FromOx {
 Bugs may be browsed and submitted at
 
 L<http://rt.cpan.org/Public/Dist/Display.html?Name=Oxford-Calendar>
+
+A copy of the maintainer's git repository may be found at
+
+L<https://github.com/jmdh/Oxford-Calendar>
 
 =head1 AUTHOR
 
