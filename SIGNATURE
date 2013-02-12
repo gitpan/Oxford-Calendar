@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.63.
+signed via the Module::Signature module, version 0.68.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -14,18 +14,18 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 71bc789c7f8b3f62477bca91f8a2770e87106d8f Changes
+SHA1 9b8d79bc27e43422915aa89249fb5da1ed9aa5a3 Changes
 SHA1 ed2a79b3c92dbeac783bb79f122719018a4405ad MANIFEST
-SHA1 7c3e6a245cc6f7204da6ef3254973a5d5021be81 META.yml
+SHA1 9848ee344e3074b3846ec1b2a45ec91e2d8a2f8a META.yml
 SHA1 88ab794c78e0bfa7c29ee223eecf4be636aadc95 Makefile.PL
-SHA1 9972d40854cab84e0e13dfa9ab9fd21a92e8d331 lib/Oxford/Calendar.pm
-SHA1 9c5c1df92ab49cd0296aa64430e75e8ff6e0a660 t/00_all.t
+SHA1 e838df93c01e1bd1af24c1c1efa0ea128a0dd0f6 lib/Oxford/Calendar.pm
+SHA1 fdb7c340183280dec9155d314067d146f7bcd3df t/00_all.t
 SHA1 7909082ff0b1bd24a68766335ea9850d95f0b498 t/01_bug_sundays_0th_or_earlier.t
 SHA1 ec67c2442022354e1c562ba3dc6a79a873e4ab58 t/02_bug_nearest_dst.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.10 (GNU/Linux)
+Version: GnuPG v1.4.12 (GNU/Linux)
 
-iD8DBQFP6gImYzuFKFF44qURAj90AKCsgTB8kd2EcNOQzXRQ6UXXt4ksQQCfQcN6
-GuU9EKRvdDic2ND2lVhrrwI=
-=Dx+I
+iD8DBQFRGryHYzuFKFF44qURAr0DAJ4+1xPVcrhBX4KK0ZPWBdDVYV4RAQCgx5VO
+5gzeVbDx7e7qxrxFXKlvWx8=
+=5xcr
 -----END PGP SIGNATURE-----
